@@ -4,41 +4,53 @@
 
 ## 当前版本
 
-- 版本：`1.0.3`
-- versionCode：`166`
+- 版本：`1.1.0`
+- versionCode：`167`
 - Android 包名：`com.pocketledger.app`
-- 已完成验证的平台：Android 16 / API 36
-- APK 签名：APK Signature Scheme v3，RSA 4096 位
+- APK：正式签名、压缩、非 Debug，与正式版 1.0.3 使用同一签名证书
+- 本轮验证：主机测试及离线升级条件通过；真机 UI、音频和覆盖升级验收待完成
 
-> 工程的 `minSdk` 为 API 31，但 Android 12–15 尚未完成正式兼容性验收，因此本版本只对 Android 16 的已验证范围作出声明。
+> 工程的 `minSdk` 为 API 31。历史 1.0.3 曾在 Android 16 / API 36 完成部分真机验证，但不能据此认定 1.1.0 已通过真机验收。Android 12–15 及完整多设备兼容性仍未验收。
 
 ## 下载与安装
 
-推荐从 [GitHub Release v1.0.3](https://github.com/QiuTong-official/pocket-club-dues/releases/tag/v1.0.3) 下载 `pocket-club-dues-1.0.3.apk`。仓库中也保留了一份中文文件名的 [APK 文件](Releases/%E6%8E%8C%E4%B8%8A%E9%83%A8%E8%B4%B9-1.0.3.apk)。两者内容和 SHA-256 完全相同。下载后，在 Android 系统中允许当前文件来源安装未知应用。
+推荐从 [GitHub Release v1.1.0](https://github.com/YunkaiYM/pocket-club-dues/releases/tag/v1.1.0) 下载 `pocket-club-dues-1.1.0.apk`。仓库中也保留 [1.1.0 APK](Releases/掌上部费-1.1.0.apk)，两者内容和 SHA-256 完全相同。下载后，在 Android 系统中允许当前文件来源安装未知应用。
 
-安装或升级前建议先在应用内完成数据备份。由正式版 `1.0.2` 原位升级到 `1.0.3` 的同签名安装已经在 Android 16 上验证；其他来源或不同签名的旧安装包可能无法直接覆盖安装。
+升级前请先在应用内导出备份，再使用正式 APK 直接覆盖安装。**不要卸载旧版或清除应用数据。** 正式 `1.0.3 → 1.1.0` 已通过同包名、同签名、递增版本号核验；旧数据库和旧 ZIP 备份的主机兼容测试通过，但本轮没有真机覆盖升级后的数据保留实测。其他来源或不同签名的安装包不能据此保证可覆盖安装。
+
+旧 ZIP 备份导入采用本机同名设置优先，不能理解为旧备份会覆盖恢复新设备上的全部外观和设置。
+
+## 本次更新
+
+- 可关闭收入记账，保留历史数据；收入开启时也能独立选择仅按支出金额反馈。
+- 两套可调整的五档反馈门槛；比例模式按收入登记周期的实际天数计算日均收入，包含月、年登记。
+- 修复完成当日登记后补记支出反复播放反馈语音，改善保存保护、页面状态和切换动画。
+- 保留掌上部费名称、指定素材、开屏、默认反馈媒体、点击特效和隐藏设置。
+
+完整内容、数据兼容边界及遗留问题见 [1.1.0 更新报告](Docs/Reports/Update_1.1.0_20260905.md)。历史 [v1.0.3 Release](https://github.com/YunkaiYM/pocket-club-dues/releases/tag/v1.0.3) 及安装包保留；保留旧包不代表支持无损降级。
 
 ## 完整性校验
 
-APK 文件：`Releases/掌上部费-1.0.3.apk`
+APK 文件：`Releases/掌上部费-1.1.0.apk`
 
 SHA-256：
 
 ```text
-AFA8F013CBF090E4FBA5BB7D6EF6067CBB089728410D009E0A6DA30C2CF074C9
+674A103F8BBA2AFBD810CADD99CF5FF215E5F76A7B541FB44D745ED5C8C7AD19
 ```
 
 也可以使用仓库中的 [SHA256SUMS.txt](Releases/SHA256SUMS.txt) 进行校验。在 Windows PowerShell 中运行：
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\掌上部费-1.0.3.apk
+Get-FileHash -Algorithm SHA256 .\掌上部费-1.1.0.apk
 ```
 
 ## 验证状态
 
-- `verified`：正式 APK 已签名、压缩并通过签名校验；Android 16 上已验证同签名升级、安装后 APK 字节一致、正式包不可调试、冷启动无 fatal/ANR。
-- `partial`：完整三语言无障碍矩阵、低存储/故障注入/长时间稳定性和自然 MIUI 后台时序仍未全部关闭。
+- `verified / host`：120 个测试套件、625 项测试通过；完整原生 Lint 为 0 错误、81 警告、2 提示；正式 APK 离线升级检查 14/14 通过。
+- `partial / device pending`：本轮真机 UI、音频与覆盖升级数据保留验收未完成；完整三语言无障碍、低存储/故障注入/长时间稳定性和自然 MIUI 后台时序仍未全部关闭。
 - `blocked`：第二台设备的跨设备 ZIP 迁移验证仍冻结。
+- 已知问题：极端金额可能使账户余额整数运算溢出，本轮尚未修复，不能将本次复盘理解为全程序无 bug。
 
 ## 隐私说明
 
