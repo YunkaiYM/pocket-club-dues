@@ -1,5 +1,9 @@
 # Parameters
 
+## 2026-09-05：1.1.1 模拟器验收与发布
+
+当前版本 1.1.1 / 168；APK 60,242,157 bytes，SHA-256 A43D8E76EDEE0C82DE173EBF0473A5E7C71B25610032DAA26FBBEF9CC93939CA；证书保持不变。132 suites / 691 tests；Lint 0/83/2；模拟器 API36 / 1080×2400、11 项原生回归。正式升级 167→168，Room14 / ZIP20，147 品牌资源 / 44 未压缩 WAV。Release v1.1.1，报告 Docs/Reports/Update_1.1.1_20260905.md。下方 1.1.0 参数为历史。
+
 - GitHub owner：`YunkaiYM`（2026-09-05 API 实查；旧 `QiuTong-official` 地址仍重定向）
 - Repository：`pocket-club-dues`
 - Display title：`掌上部费`
